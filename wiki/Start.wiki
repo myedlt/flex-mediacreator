@@ -1,5 +1,5 @@
 #labels Phase-Implementation
-#Summary 项目简介。
+Summary 项目简介。
 
 = 功能简介 =
 
