@@ -2,22 +2,17 @@
 <MaterialListBase xmlns="ui.material.*" xmlns:mx="http://www.adobe.com/2006/mxml">
 	<mx:Script>
 		<![CDATA[
-			import classes.core.MediaLink;
-			import classes.event.CommonEvent;
-			import classes.mediaItem.MediaImage;
-			
-			import mx.core.FlexGlobals;
-			import mx.managers.PopUpManager;
+			import org.asblog.core.MediaLink;
+			import org.asblog.event.CommonEvent;
+			import org.asblog.mediaItem.MediaImage;
 			
 			import ui.Snapshot;
-			import ui.popUpWindow.PopUpInputWindow;
 			override protected function onCreated():void
 			{
-				button.label = "添加图片";
-				button.addEventListener(MouseEvent.CLICK,uploadImage);
 				var snapshot:Snapshot;
 				var link:MediaLink;
-				for(var i :int=1;i<23;i++)
+				
+				for(var i :int=1;i<20;i++)
 				{
 					snapshot = new Snapshot();
 					snapshot.imageUrl = "pic/"+i+".jpg"
@@ -31,10 +26,14 @@
 			}
 			private function uploadImage(event:MouseEvent):void
 			{
+				/*
 				var win:PopUpInputWindow;
 				win = PopUpManager.createPopUp(MediaCreator(FlexGlobals.topLevelApplication).designCanvas, PopUpInputWindow, false) as PopUpInputWindow
-				win.addEventListener("onAddItem",onAdd);
+				win.addEventListener("onAddItem",onAdd);*/
+				
+				
 			}
+			
 			private function onAdd(event:CommonEvent):void
 			{
 				var snapshot:Snapshot = new Snapshot();

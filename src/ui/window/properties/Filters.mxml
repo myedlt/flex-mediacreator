@@ -20,11 +20,11 @@
 		<![CDATA[
 			import mx.events.ListEvent;
 			import mx.collections.ArrayCollection;
-			import classes.event.FilterEvent;
+			import org.asblog.event.FilterEvent;
 			import ui.window.filtersBox.FilterBoxBase;
 			import mx.events.MenuEvent;
 			import ui.window.filtersBox.BlurPanel;
-			import classes.core.IMediaObject;
+			import org.asblog.core.IMediaObject;
 			import mx.controls.Menu;
 			[Bindable]
      		public var selectedItem:IMediaObject

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" toolTip="将图案拖拽到面板"
 		   width="80"
 		   height="80"
 		   creationComplete="onCreated()"
 		   >
 	<mx:Script>
 		<![CDATA[
-			import classes.core.MediaLink;
+			import org.asblog.core.MediaLink;
 			
 			import mx.core.DragSource;
 			import mx.graphics.ImageSnapshot;

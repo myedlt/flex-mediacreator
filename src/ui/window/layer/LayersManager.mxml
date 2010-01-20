@@ -17,10 +17,10 @@
 			 itemRenderer="ui.window.layer.LayerItem"
 			 />
 	<mx:HBox id="itemButton">
-		<mx:LinkButton label="↑" id="up_btn"/>
-		<mx:LinkButton label="↓" id="down_btn"/>
-		<mx:LinkButton label="×" id="remove_btn"/>
-		<mx:LinkButton label="××" id="removeAll_btn"/>
+		<mx:LinkButton label="上一层" id="up_btn"/>
+		<mx:LinkButton label="下一层" id="down_btn"/>
+		<mx:LinkButton label="删除" id="remove_btn"/>
+		<mx:LinkButton label="全部删除" id="removeAll_btn"/>
 	</mx:HBox>
 	<mx:Binding source="layers.selectedIndex!=-1" destination="noSelection"/>
 	<mx:Binding source="designCanvas.selectedItem" destination="selectedItem"/>
@@ -28,10 +28,10 @@
 	<mx:Binding source="designCanvas.itemList" destination="itemList"/>
 	<mx:Script>
 		<![CDATA[
-			import classes.core.DesignCanvas;
-			import classes.core.IMediaObject;
-			import classes.frameworks.ApplicationFacade;
-			import classes.frameworks.view.LayersManagerMdeiator;
+			import org.asblog.core.DesignCanvas;
+			import org.asblog.core.IMediaObject;
+			import org.asblog.frameworks.ApplicationFacade;
+			import org.asblog.frameworks.view.LayersManagerMdeiator;
 			
 			import mx.collections.ArrayCollection;
 

@@ -2,9 +2,9 @@
 <MaterialListBase xmlns="ui.material.*" xmlns:mx="http://www.adobe.com/2006/mxml">
 	<mx:Script>
 		<![CDATA[
-			import classes.core.MediaLink;
-			import classes.mediaItem.MediaImage;
-			import classes.mediaItem.MediaText;
+			import org.asblog.core.MediaLink;
+			import org.asblog.core.TextLink;
+			import org.asblog.mediaItem.MediaText;
 			
 			import ui.Snapshot;
 			
@@ -21,9 +21,9 @@
 				var mediaText:MediaText = new MediaText();
 				mediaText.text = "测试啊测试"
 				snapshot.imageUrl = mediaText;
-				var link:MediaLink = new MediaLink();
+				var link:TextLink = new TextLink();
 				link.classRef = MediaText;
-				link.source = "测试啊测试";
+				link.text = "测试啊测试";
 				snapshot.mediaLink = link;
 				
 				imgList.addChild(snapshot)
