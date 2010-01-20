@@ -9,7 +9,7 @@
 			</mx:AddChild>
 			<mx:AddChild>
 				<mx:HBox width="100%">
-					<mx:FormItem label="背景色:">
+					<!--<mx:FormItem label="背景色:">
 						<mx:ColorPicker id="colorPicker"
 										change="{canvasRBG=colorPicker.selectedColor}"
 										selectedColor="#FFFFFF"/>
@@ -20,7 +20,8 @@
 					<mx:RadioButton label="拉伸"
 									groupName="bgGroup"
 									value="lashen"
-									selected="true"/>
+									selected="true"/>-->
+					<mx:Label text="没有选中"/>
 				</mx:HBox>
 			</mx:AddChild>
 			<mx:RemoveChild target="{formitem1}"/>
@@ -120,10 +121,10 @@
 				destination="currentState"/>
 	<mx:Script>
 		<![CDATA[
-			import classes.core.DesignCanvas;
-			import classes.core.IMediaObject;
-			import classes.graphics.ColorStyleEnum;
-			import classes.transform.TransformTool;
+			import org.asblog.core.DesignCanvas;
+			import org.asblog.core.IMediaObject;
+			import org.asblog.graphics.ColorStyleEnum;
+			import org.asblog.transform.TransformTool;
 			[Bindable]
 			public var designCanvas:DesignCanvas
 			[Bindable]

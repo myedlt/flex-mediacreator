@@ -3,7 +3,15 @@
 	<subComponents>
 		<mx:VBox>
 			<mx:ComboBox id="typeCom" change="combobox1_changeHandler(event)" dataProvider="{typeService.lastResult.row}" labelField="typename"/>
-			<mx:TileList itemRenderer="mx.controls.Image" dataProvider="{picService.lastResult.row}" labelField="url"/>
+			<mx:TileList   color="0x323232"
+						   columnCount="3"
+						   columnWidth="200"
+						   rowCount="2"
+						   rowHeight="200"
+						   direction="horizontal"
+						   horizontalScrollPolicy="on"
+						   verticalScrollPolicy="on"
+						   itemRenderer="ui.TileItem" dataProvider="{picService.lastResult.row}" labelField="url"/>
 		</mx:VBox>
 	</subComponents>
 	<mx:HTTPService id="typeService" url="{domain+'type?ac=show'}" showBusyCursor="true" resultFormat="e4x" result="typeService_resultHandler(event)"/>

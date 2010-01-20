@@ -9,8 +9,8 @@
 	</subComponents>
 	<mx:Script>
 		<![CDATA[
-			import classes.event.CommonEvent;
-			import classes.event.MediaItemEvent;
+			import org.asblog.event.CommonEvent;
+			import org.asblog.event.MediaItemEvent;
 			import mx.managers.PopUpManager;
 			private function onAdd():void
 			{

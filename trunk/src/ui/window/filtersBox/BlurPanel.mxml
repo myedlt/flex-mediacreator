@@ -19,7 +19,7 @@
 	</mx:Form>
 	<mx:Script>
 		<![CDATA[
-			import classes.event.FilterEvent;
+			import org.asblog.event.FilterEvent;
 			[Bindable]
 			private var currentFilter:BlurFilter
 			override protected function onCreat():void

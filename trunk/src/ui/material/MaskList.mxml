@@ -2,9 +2,9 @@
 <MaterialListBase xmlns="ui.material.*" xmlns:mx="http://www.adobe.com/2006/mxml">
 	<mx:Script>
 		<![CDATA[
-			import classes.core.ShapeLink;
-			import classes.mediaItem.MediaShapMask;
-			import classes.mediaItem.MediaShape;
+			import org.asblog.core.ShapeLink;
+			import org.asblog.mediaItem.MediaShapMask;
+			import org.asblog.mediaItem.MediaShape;
 			
 			import mx.graphics.ImageSnapshot;
 			

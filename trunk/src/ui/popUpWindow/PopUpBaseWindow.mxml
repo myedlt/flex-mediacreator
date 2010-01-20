@@ -2,7 +2,7 @@
 <mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
 	 			showCloseButton="true"
 	            close="PopUpManager.removePopUp(this);"
-	            creationComplete="PopUpManager.centerPopUp(this);onCreated()">
+	            creationComplete="onCreated()">
     <mx:Script>
         <![CDATA[
             import mx.managers.PopUpManager;
@@ -16,6 +16,7 @@
 				for(var i:int=0; i < _subComponents.length; i++)
 					if(_subComponents[i] is DisplayObject)
                           myBox.addChild( _subComponents[i] );
+				PopUpManager.centerPopUp(this)
 			}
         ]]>
     </mx:Script>

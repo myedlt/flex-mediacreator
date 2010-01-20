@@ -11,7 +11,7 @@
 	<mx:Binding source="cancel_btn.enabled" destination="edit_btn.enabled"/>
 	<mx:Script>
 		<![CDATA[
-			import classes.core.IMediaObject;
+			import org.asblog.core.IMediaObject;
 			[Bindable]
      		public var selectedItem:IMediaObject
      		private function applyMask():void
@@ -24,7 +24,7 @@
      		}
      		private function cancelMask():void
      		{
-     			selectedItem.removeChild(selectedItem.maskObject);
+     			selectedItem.removeMask();
      		}
 		]]>
 	</mx:Script>

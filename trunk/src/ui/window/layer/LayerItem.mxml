@@ -2,7 +2,7 @@
 <mx:HBox horizontalScrollPolicy="off" xmlns:mx="http://www.adobe.com/2006/mxml" removedFromStage="trace('removedFromStage')">
 	<mx:Script>
 		<![CDATA[
-			import classes.core.IMediaObject;
+			import org.asblog.core.IMediaObject;
 		]]>
 	</mx:Script>
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:components="classes.components.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:components="org.asblog.components.*">
 	<components:GradientEditor ="gEditor" 
 		width="200" 
 		height="50" 
