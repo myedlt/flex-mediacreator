@@ -1,11 +1,12 @@
 package org.asblog.utils 
 {
+	
 	import flash.display.IBitmapDrawable;
 	import flash.net.FileReference;
 	import flash.utils.ByteArray;
 	
-	import mx.graphics.ImageSnapshot;
-	import mx.graphics.codec.JPEGEncoder;
+	import org.asblog.graphics.ImageSnapshot;
+	import org.asblog.graphics.JPEGEncoder;
 
 	/**
 	 * @author Halley
@@ -21,7 +22,7 @@ package org.asblog.utils
 		}
 		public static function getImageBytes(image:IBitmapDrawable):ByteArray
 		{
-			return ImageSnapshot.captureImage( image, 0, jpegEnc ).data
+			return jpegEnc.encode(ImageSnapshot.captureBitmapData( image ));
 		}
 	}
 }
