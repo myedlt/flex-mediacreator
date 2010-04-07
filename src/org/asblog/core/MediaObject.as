@@ -1,12 +1,5 @@
 package org.asblog.core
 {
-	import org.asblog.event.MediaItemEvent;
-	import org.asblog.event.MediaMaskEvent;
-	import org.asblog.graphics.ColorStyleEnum;
-	import org.asblog.mediaItem.MediaShapMask;
-	import org.asblog.mxml.IMXML;
-	import org.asblog.utils.ArrayUtil;
-	
 	import cn.riahome.color.DisplayObjectAdjustColor;
 	
 	import flash.display.DisplayObject;
@@ -21,28 +14,35 @@ package org.asblog.core
 	import mx.events.DragEvent;
 	import mx.managers.DragManager;
 	
+	import org.asblog.event.MediaItemEvent;
+	import org.asblog.event.MediaMaskEvent;
+	import org.asblog.graphics.ColorStyleEnum;
+	import org.asblog.mediaItem.MediaShapMask;
+	import org.asblog.mxml.IMXML;
+	import org.asblog.utils.ArrayUtil;
+	
 	import ui.Snapshot;
 	
-
-			
-
+	import org.asblog.utils.ColorMatrix;
+	
+	
 	use namespace mx_internal;
-
+	
 	/**
 	 * 被选中之前触发
 	 */	
 	[Event(name="beforSelect", type="org.asblog.event.MediaItemEvent")]
-
+	
 	/**
 	 * 被选后时触发
 	 */	
 	[Event(name="onSelected", type="org.asblog.event.MediaItemEvent")]
-
+	
 	/**
 	 * 被遮罩后触发
 	 */	
 	[Event(name="onMasked", type="org.asblog.event.MediaMaskEvent")]
-
+	
 	/**
 	 * 
 	 * @author xucan 
@@ -51,16 +51,19 @@ package org.asblog.core
 	 * 
 	 */
 	[Bindable] 
-
+	
 	public class MediaObject extends UIComponent implements IMXML,IMediaObject
 	{
 		private var _islock : Boolean = false;
 		private var _maskobject : MediaMask;
 		private var _selectenabled : Boolean = true;
 		private var _selected : Boolean = false;
-		private var _brightness : int;		private var _saturation : int;		private var _colorStyleEnable : Boolean;		private var _isComplete : Boolean;
+		private var _brightness : int;
+		private var _saturation : int;
+		private var _colorStyleEnable : Boolean;
+		private var _isComplete : Boolean;
 		private var _mediaLink : MediaLink;
-
+		
 		private var _colorStyle:String;
 		/**
 		 * 真实的对象
@@ -70,7 +73,7 @@ package org.asblog.core
 		 * 对自身类型的引用
 		 */		
 		protected var mediaObjectClass : Class = getDefinitionByName( getQualifiedClassName( this ) ) as Class;
-
+		
 		public function MediaObject()
 		{
 			super( );
@@ -85,36 +88,36 @@ package org.asblog.core
 		{
 			return _colorStyle;
 		}
-
+		
 		public function set colorStyle(value:String):void
 		{
 			_colorStyle = value;
 		}
-
+		
 		public function get mediaLink():MediaLink
 		{
 			return _mediaLink;
 		}
-
+		
 		public function set mediaLink(value:MediaLink):void
 		{
 			_mediaLink = value;
 		}
-
+		
 		public function get contentObject() : DisplayObject
 		{
 			return relatedObject;
 		}
-
+		
 		public function parseMXML(mxml : MXML) : void
 		{
 		}
-
+		
 		public function createMXML(container : IMediaObjectContainer = null) : MXML
 		{
 			return null;
 		}
-
+		
 		public function clone() : *
 		{
 			var s : IMediaObject = new mediaObjectClass( );
@@ -125,22 +128,22 @@ package org.asblog.core
 			s.mediaLink = mediaLink;
 			return s;
 		}
-
+		
 		override public function get width( ) : Number
 		{
 			return $width;
 		}
-
+		
 		override public function get height( ) : Number
 		{
 			return $height;
 		}
-
+		
 		override public function set width(value : Number) : void
 		{
 			super.width = value;
 		}
-
+		
 		override public function set height(value : Number) : void
 		{
 			super.height = value;
@@ -149,47 +152,47 @@ package org.asblog.core
 		{
 			return _relatedObject;
 		}
-
+		
 		public function set relatedObject(v : DisplayObject) : void
 		{
 			_relatedObject = v;
 		}
-
+		
 		public function get selectEnabled() : Boolean
 		{
 			return _selectenabled;
 		}
-
+		
 		public function set selectEnabled(v : Boolean) : void
 		{
 			_selectenabled = v;
 		}
-
+		
 		public function get selected() : Boolean
 		{
 			return _selected;
 		}
-
+		
 		public function set selected(v : Boolean) : void
 		{
 			_selected = v;
 		}
-
+		
 		public function get isLock() : Boolean
 		{
 			return _islock;
 		}
-
+		
 		public function set isLock(v : Boolean) : void
 		{
 			_islock = v;
 		}
-
+		
 		public function get colorStyleEnable() : Boolean
 		{
 			return _colorStyleEnable;
 		}
-
+		
 		public function set colorStyleEnable(v : Boolean) : void
 		{
 			if(v)
@@ -217,7 +220,7 @@ package org.asblog.core
 		{
 			return _brightness;
 		}
-
+		
 		private function setColorMatrix(matrix : Array) : void
 		{
 			var oldFilters : Array = filters;
@@ -239,50 +242,55 @@ package org.asblog.core
 			_colorStyleEnable = true;
 			filters = oldFilters;
 		}
-
+		
 		public function set brightness(v : int) : void
 		{
 			_brightness = v;
-			setColorMatrix( DisplayObjectAdjustColor.getBrightnessMatrix( v ) );
+			//			setColorMatrix( DisplayObjectAdjustColor.getBrightnessMatrix( v ) );
+			var cm : ColorMatrix = new ColorMatrix();
+			setColorMatrix( cm.adjustColor(this._brightness,this._saturation) );
 			if(_brightness!=0)
 				_colorStyle = ColorStyleEnum.BRIGHTNESS;
 			else	
 				_colorStyle = null;
 			dispatchEvent( new Event( "proChange" ) );
 		}
+		
 		[Bindable("proChange")]
 		public function get saturation() : int
 		{
 			return _saturation;
 		}
-
+		
 		public function set saturation(v : int) : void
 		{
 			_saturation = v;
-			setColorMatrix( DisplayObjectAdjustColor.getSaturationMatrix( v ) );
+			//			setColorMatrix( DisplayObjectAdjustColor.getSaturationMatrix( v ) );
+			var cm : ColorMatrix = new ColorMatrix();
+			setColorMatrix( cm.adjustColor(this._brightness,this._saturation) );
 			if(_saturation!=0)
 				_colorStyle = ColorStyleEnum.SATURATION;
 			else	
 				_colorStyle = null;
 			dispatchEvent( new Event( "proChange" ) );
-				
+			
 		}
-
+				
 		private function setBrightness(v : int) : void
 		{
 			setColorMatrix( DisplayObjectAdjustColor.getBrightnessMatrix( v ) );
 		}
-
+		
 		private function setSaturation(v : int) : void
 		{
-			setColorMatrix( DisplayObjectAdjustColor.getSaturationMatrix( v ) );
+			setColorMatrix( DisplayObjectAdjustColor.getSaturationMatrix(v) );
 		}
-
+		
 		public function get maskObject() : MediaMask
 		{
 			return _maskobject;
 		}
-
+		
 		public function set maskObject(v : MediaMask) : void
 		{
 			_maskobject = v;
@@ -293,17 +301,19 @@ package org.asblog.core
 			removeChild( maskObject );
 			maskObject = null;
 		}
-
+		
 		private function onDragEnter(event : DragEvent) : void
 		{
-			if(Snapshot( event.dragInitiator ).mediaLink.isMask && (maskObject == null) && (!mediaLink.isBackground))
-			{
-				Snapshot( event.dragInitiator ).mediaLink.maskedItemUid = uid;
-				DragManager.acceptDragDrop( this );
-				DragManager.showFeedback( DragManager.LINK );
+			if(event.dragInitiator is Snapshot){
+				if(Snapshot( event.dragInitiator ).mediaLink.isMask && (maskObject == null) && (!mediaLink.isBackground))
+				{
+					Snapshot( event.dragInitiator ).mediaLink.maskedItemUid = uid;
+					DragManager.acceptDragDrop( this );
+					DragManager.showFeedback( DragManager.LINK );
+				}
 			}
 		}
-
+		
 		private function onDragDrop(event : DragEvent) : void
 		{
 			var snapshot : Snapshot = Snapshot( event.dragInitiator );
@@ -329,7 +339,7 @@ package org.asblog.core
 				//maskObj.masking = true
 				maskObj.maskedObject = this;
 			}
-        	else
+			else
 			{
 				parent.dispatchEvent( event.clone( ) );
 			}
@@ -348,7 +358,7 @@ package org.asblog.core
 			}
 			parent.removeChild( this );
 		}
-
+		
 		protected function onRemove(eve : Event) : void
 		{
 			this.removeEventListener( Event.REMOVED, onRemove );
